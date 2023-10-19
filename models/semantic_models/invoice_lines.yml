@@ -26,10 +26,10 @@ semantic_models:
       - name: CustomerID
         type: categorical
 
-    metrics:
-      - name: revenue
-        description: Sum of extended price.
-        type: simple
-        label: Revenue
-        type_params:
-          measure: ExtendedPrice
+metrics:
+  - name: revenue
+    description: Sum of extended price.
+    type: simple
+    label: Revenue
+    type_params:
+      measure: ExtendedPrice
