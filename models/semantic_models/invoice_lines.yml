@@ -1,0 +1,35 @@
+semantic_models:
+  #The name of the semantic model.
+  - name: invoice_lines
+    defaults:
+      agg_time_dimension: InvoiceDate
+    description: |
+      Sales Invoice fact table. This table is at the invoice line item grain with one row per order. 
+    #The name of the dbt model and schema
+    model: ref('FactInvoiceLine')
+    entities:
+      - name: InvoiceLineId
+        type: primary
+      - name: CustomerID
+        type: foreign
+        expr: CustomerID
+    #Measures. These are the aggregations on the columns in the table.
+    measures: 
+      - name: ExtendedPrice
+        description: Price per line item
+        agg: sum
+    dimensions:
+      - name: InvoiceDate
+        type: time
+        type_params:
+          time_granularity: day 
+      - name: CustomerID
+        type: categorical
+
+    metrics:
+      - name: revenue
+        description: Sum of extended price.
+        type: simple
+        label: Revenue
+        type_params:
+          measure: ExtendedPrice
