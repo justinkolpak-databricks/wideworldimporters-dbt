@@ -10,6 +10,7 @@ semantic_models:
     entities:
       - name: invoicelineid
         type: primary
+        expr: invoicelineid
       - name: customerid
         type: foreign
         expr: customerid
