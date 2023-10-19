@@ -10,21 +10,17 @@ semantic_models:
       - name: invoicelineid
         type: primary
         expr: invoicelineid
-      - name: customerid
-        type: foreign
-        expr: customerid
-    #Measures. These are the aggregations on the columns in the table.
+
     measures: 
       - name: extendedprice
         description: Price per line item
         agg: sum
+        
     dimensions:
       - name: invoicedate
         type: time
         type_params:
           time_granularity: day 
-      - name: customerid
-        type: categorical
 
 metrics:
   - name: revenue
