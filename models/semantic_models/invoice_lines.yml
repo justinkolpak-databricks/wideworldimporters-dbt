@@ -8,22 +8,22 @@ semantic_models:
     #The name of the dbt model and schema
     model: ref('FactInvoiceLine')
     entities:
-      - name: InvoiceLineId
+      - name: invoicelineid
         type: primary
-      - name: CustomerID
+      - name: customerid
         type: foreign
-        expr: CustomerID
+        expr: customerid
     #Measures. These are the aggregations on the columns in the table.
     measures: 
-      - name: ExtendedPrice
+      - name: extendedprice
         description: Price per line item
         agg: sum
     dimensions:
-      - name: InvoiceDate
+      - name: invoicedate
         type: time
         type_params:
           time_granularity: day 
-      - name: CustomerID
+      - name: customerid
         type: categorical
 
 metrics:
@@ -32,4 +32,4 @@ metrics:
     type: simple
     label: Revenue
     type_params:
-      measure: ExtendedPrice
+      measure: extendedprice
