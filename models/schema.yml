@@ -1,0 +1,54 @@
+
+version: 2
+
+sources:
+  - name: wideworldimporters
+    database: justin_kolpak
+    schema: wideworldimporters
+    loader: databricks # informational only (free text)
+  
+    tables:
+      - name: bronze_applicationcities
+        identifier: bronze_applicationcities
+
+      - name: bronze_applicationstateprovinces
+        identifier: bronze_applicationstateprovinces
+
+      - name: bronze_applicationcountries
+        identifier: bronze_applicationcountries
+
+      - name: bronze_salesinvoicelines
+        identifier: bronze_salesinvoicelines
+  
+      - name: bronze_salesinvoices
+        identifier: bronze_salesinvoices
+
+      - name: bronze_salesorders
+        identifier: bronze_salesorders
+
+      - name: bronze_warehousestockitems
+        identifier: bronze_warehousestockitems
+
+      - name: bronze_salescustomers
+        identifier: bronze_salescustomers
+
+      - name: bronze_salescustomercategories
+        identifier: bronze_salescustomercategories
+models:
+    - name: my_first_dbt_model
+      description: "A starter dbt model"
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+
+    - name: my_second_dbt_model
+      description: "A starter dbt model"
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
