@@ -28,7 +28,7 @@ semantic_models:
         type_params:
           time_granularity: day 
       - name: itemreceived
-        type: boolean
+        type: categorical
         expr: itemreceived
   
   - name: customers
