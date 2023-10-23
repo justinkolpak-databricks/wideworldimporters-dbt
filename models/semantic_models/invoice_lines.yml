@@ -10,9 +10,12 @@ semantic_models:
       - name: invoicelineid
         type: primary
         expr: invoicelineid
+      - name: customer
+        type: foreign
+        expr: customerid
 
     measures: 
-      - name: extendedprice
+      - name: sum_extendedprice
         description: Price per line item
         agg: sum
         
@@ -21,11 +24,22 @@ semantic_models:
         type: time
         type_params:
           time_granularity: day 
-
+  
+  - name: customers
+    description: Customer Dimension table. One row per customer.
+    model: ref('DimCustomer')
+    entities:
+      - name: customer
+        type: primary
+        expr: customerid
+    dimensions:
+      - name: customer_name
+        type: categorical
+    
 metrics:
   - name: revenue
     description: Sum of extended price.
     type: simple
     label: Revenue
     type_params:
-      measure: extendedprice
+      measure: sum_extendedprice
