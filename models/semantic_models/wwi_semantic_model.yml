@@ -51,5 +51,5 @@ metrics:
     type_params:
       measure: sum_extendedprice
     filter: |
-      {{ Dimension('invoices_lines__itemreceived') }}  = True
+      {{ Dimension('invoicelineid__itemreceived') }}  = True
     
