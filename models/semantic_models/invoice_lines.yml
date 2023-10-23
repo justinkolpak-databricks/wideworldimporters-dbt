@@ -18,6 +18,7 @@ semantic_models:
       - name: sum_extendedprice
         description: Price per line item
         agg: sum
+        expr: extendedprice
         
     dimensions:
       - name: invoicedate
