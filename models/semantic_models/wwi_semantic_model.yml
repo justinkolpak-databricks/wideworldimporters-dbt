@@ -15,7 +15,7 @@ semantic_models:
         expr: customerid
 
     measures: 
-      - name: sum_extendedprice
+      - name: extendedprice
         description: Price per line item
         agg: sum
         expr: extendedprice
@@ -43,4 +43,4 @@ metrics:
     type: simple
     label: Revenue
     type_params:
-      measure: sum_extendedprice
+      measure: extendedprice
