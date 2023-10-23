@@ -33,7 +33,7 @@ semantic_models:
         type: primary
         expr: customerid
     dimensions:
-      - name: customer_name
+      - name: customername
         type: categorical
     
 metrics:
