@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+.{{ config(materialized='table') }}
 
 
 SELECT il.InvoiceLineId
@@ -15,6 +15,7 @@ SELECT il.InvoiceLineId
     , il.TaxAmount
     , il.LineProfit
     , il.ExtendedPrice
+    , CASE WHEN i.ConfirmedReceivedBy IS NOT NULL THEN True ELSE False END AS ItemReceived
 FROM {{ source('wideworldimporters', 'bronze_salesinvoicelines') }} il
 LEFT JOIN {{ source('wideworldimporters', 'bronze_salesinvoices') }} i ON il.InvoiceID = i.InvoiceID
 LEFT JOIN {{ source('wideworldimporters', 'bronze_salesorders') }} o ON i.OrderID = o.OrderID
