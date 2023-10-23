@@ -6,7 +6,7 @@ semantic_models:
     model: ref('FactInvoiceLine')
     defaults:                            
       agg_time_dimension: invoice_date
-      
+
     entities:
       - name: invoicelineid
         type: primary
@@ -27,6 +27,9 @@ semantic_models:
         expr: invoicedate
         type_params:
           time_granularity: day 
+      - name: itemreceived
+        type: boolean
+        expr: itemreceived
   
   - name: customers
     description: Customer Dimension table. One row per customer.
@@ -47,3 +50,6 @@ metrics:
     label: Revenue
     type_params:
       measure: sum_extendedprice
+    filter: |
+      {{ Dimension('itemreceived') }} = True
+    
