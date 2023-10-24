@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-SELECT c.CityId
+SELECT c.CityID
     , c.CityName
     , sp.StateProvinceName
     , sp.SalesTerritory

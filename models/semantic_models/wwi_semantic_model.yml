@@ -1,10 +1,10 @@
 semantic_models:
   #The name of the semantic model.
   - name: invoice_lines
-    description: Sales Invoice fact table. This table is at the invoice line item grain with one row per order. 
+    description: Sales Invoice fact table. This table is at the invoice line item grain with one row per order.
     #The name of the dbt model and schema
     model: ref('FactInvoiceLine')
-    defaults:                            
+    defaults:
       agg_time_dimension: invoice_date
 
     entities:
@@ -15,22 +15,27 @@ semantic_models:
         type: foreign
         expr: customerid
 
-    measures: 
+    measures:
       - name: sum_extendedprice
         description: Price per line item
         agg: sum
         expr: extendedprice
-        
+      - name: sum_lineprofit
+        description: Profit per line item
+        agg: sum
+        expr: lineprofit
+
     dimensions:
       - name: invoice_date
         type: time
         expr: invoicedate
         type_params:
-          time_granularity: day 
-      - name: itemreceived
+          time_granularity: day
+
+      - name: item_received
         type: categorical
         expr: itemreceived
-  
+
   - name: customers
     description: Customer Dimension table. One row per customer.
     model: ref('DimCustomer')
@@ -42,7 +47,7 @@ semantic_models:
       - name: customer_name
         type: categorical
         expr: customername
-    
+
 metrics:
   - name: revenue
     description: Sum of extended price.
@@ -51,5 +56,12 @@ metrics:
     type_params:
       measure: sum_extendedprice
     filter: |
-      {{ Dimension('invoicelineid__itemreceived') }}  = True
-    
+      {{ Dimension('invoicelineid__item_received') }}  = True
+  
+  - name: gross_profit_pct
+    description: Gross profit expressed as a %
+    label: Gross Profit Percentage
+    type: ratio
+    type_params: 
+      numerator: sum_lineprofit
+      denominator: sum_extendedprice
