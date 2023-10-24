@@ -20,6 +20,7 @@ semantic_models:
         description: Price per line item
         agg: sum
         expr: extendedprice
+      
       - name: sum_lineprofit
         description: Profit per line item
         agg: sum
@@ -58,10 +59,19 @@ metrics:
     filter: |
       {{ Dimension('invoicelineid__item_received') }}  = True
   
+  - name: gross_profit
+    description: Sum of line profit.
+    type: simple
+    label: Gross Profit
+    type_params:
+      measure: sum_lineprofit
+    filter: |
+      {{ Dimension('invoicelineid__item_received') }}  = True
+  
   - name: gross_profit_pct
     description: Gross profit expressed as a %
     label: Gross Profit Percentage
     type: ratio
     type_params: 
-      numerator: sum_lineprofit
-      denominator: sum_extendedprice
+      numerator: gross_profit
+      denominator: revenue
