@@ -27,7 +27,8 @@ semantic_models:
         expr: invoicedate
         type_params:
           time_granularity: day 
-      - name: itemreceived
+
+      - name: item_received
         type: categorical
         expr: itemreceived
   
@@ -51,5 +52,5 @@ metrics:
     type_params:
       measure: sum_extendedprice
     filter: |
-      {{ Dimension('invoicelineid__itemreceived') }}  = True
+      {{ Dimension('invoicelineid__item_received') }}  = True
     

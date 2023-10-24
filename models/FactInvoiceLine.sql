@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 
-SELECT il.InvoiceLineId
+SELECT il.InvoiceLineID
     , i.InvoiceID
     , i.InvoiceDate
     , o.OrderID
