@@ -48,7 +48,9 @@ semantic_models:
       - name: customer_name
         type: categorical
         expr: customername
-
+      - name: customer_category
+        type: categorical
+        expr: customercategoryname
 metrics:
   - name: revenue
     description: Sum of extended price.
