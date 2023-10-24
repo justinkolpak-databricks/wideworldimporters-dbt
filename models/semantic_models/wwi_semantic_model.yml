@@ -8,7 +8,7 @@ semantic_models:
       agg_time_dimension: invoice_date
 
     entities:
-      - name: invoicelineid
+      - name: invoice_line_item
         type: primary
         expr: invoicelineid
       - name: customer
@@ -59,7 +59,7 @@ metrics:
     type_params:
       measure: sum_extendedprice
     filter: |
-      {{ Dimension('invoicelineid__item_received') }}  = True
+      {{ Dimension('invoice_line_item__item_received') }}  = True
   
   - name: gross_profit
     description: Sum of line profit.
@@ -68,7 +68,7 @@ metrics:
     type_params:
       measure: sum_lineprofit
     filter: |
-      {{ Dimension('invoicelineid__item_received') }}  = True
+      {{ Dimension('invoice_line_item__item_received') }}  = True
   
   - name: gross_profit_pct
     description: Gross profit expressed as a %
