@@ -67,7 +67,16 @@ semantic_models:
       - name: city_name
         type: categorical
         expr: cityname
-   
+      - name: state_province_name
+        type: categorical
+        expr: stateprovincename
+      - name: country_name
+        type: categorical
+        expr: countryname        
+      - name: sales_territory
+        type: categorical
+        expr: salesterritory
+        
 metrics:
   - name: revenue
     description: Sum of extended price.
