@@ -44,7 +44,7 @@ semantic_models:
       - name: customer
         type: primary
         expr: customerid
-      - name: deliver_city
+      - name: delivery_city
         type: foreign
         expr: deliverycityid
     dimensions:
@@ -59,7 +59,7 @@ semantic_models:
     description: Customer Dimension table. One row per customer.
     model: ref('DimCity')
     entities:
-      - name: city
+      - name: delivery_city
         type: primary
         expr: cityid
       
