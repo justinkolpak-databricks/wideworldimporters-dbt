@@ -44,9 +44,9 @@ semantic_models:
       - name: customer
         type: primary
         expr: customerid
-      - name: city
+      - name: deliver_city
         type: foreign
-        expr: cityid
+        expr: deliverycityid
     dimensions:
       - name: customer_name
         type: categorical
