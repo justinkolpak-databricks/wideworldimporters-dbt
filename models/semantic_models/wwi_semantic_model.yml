@@ -44,6 +44,9 @@ semantic_models:
       - name: customer
         type: primary
         expr: customerid
+      - name: city
+        type: foreign
+        expr: cityid
     dimensions:
       - name: customer_name
         type: categorical
@@ -51,6 +54,20 @@ semantic_models:
       - name: customer_category
         type: categorical
         expr: customercategoryname
+  
+  - name: cities
+    description: Customer Dimension table. One row per customer.
+    model: ref('DimCity')
+    entities:
+      - name: city
+        type: primary
+        expr: cityid
+      
+    dimensions:
+      - name: city_name
+        type: categorical
+        expr: cityname
+   
 metrics:
   - name: revenue
     description: Sum of extended price.
